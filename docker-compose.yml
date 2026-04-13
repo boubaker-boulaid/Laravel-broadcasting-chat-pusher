@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/simple-chat-app
+    environment:
+      - DB_CONNECTION=${DB_CONNECTION}
+      - DB_DATABASE=/simple-chat-app/database/database.sqlite
+
+  vite:
+    build: .
+    ports:
+      - "5173:5173"
+    volumes:
+      - .:/simple-chat-app
+    command: npm run dev -- --host
